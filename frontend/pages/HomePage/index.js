@@ -1,19 +1,16 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-
-import GlobalContext from 'common/GlobalContext';
-import Request from 'koji_utilities/request';
-import Routes from 'koji_utilities/routes';
+import Koji from 'koji-tools';
 
 const Container = styled.div`
-    background-color: ${({ theme }) => theme.colors.backgroundColor};
+    background-color: ${() => Koji.config.colors.backgroundColor};
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${() => Koji.config.colors.textColor};
     text-align: center;
 `;
 
@@ -31,7 +28,7 @@ const Content = styled.div`
 `;
 
 const Link = styled.a`
-  color: ${({ theme }) => theme.colors.linkColor};
+  color: ${() => Koji.config.colors.linkColor};
 `;
 
 const Icon = styled.div`
@@ -39,12 +36,12 @@ const Icon = styled.div`
     height: 40vmin;
     width: 60vmin;
     pointer-events: none;
-    background-image: url(${({ theme }) => theme.images.icon});
+    background-image: url(${() => Koji.config.images.icon});
     background-size: cover;
     margin-bottom: 16px;
 `;
 
-class HomePage extends React.PureComponent {
+class HomePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -54,7 +51,14 @@ class HomePage extends React.PureComponent {
     }
 
     componentDidMount() {
-        Request(Routes.SampleRoute).then((e) => this.setState({ response: e.response }));
+        Koji.request(Koji.routes.SampleRoute).then((e) => this.setState({ response: e.response }));
+
+        // Force an update of the dom on prop changes
+        // This is just for development situations so
+        // that we can test prop changes in real-time.
+        Koji.on('change', () => {
+            this.forceUpdate();
+        })
     }
 
     render() {
@@ -62,19 +66,17 @@ class HomePage extends React.PureComponent {
             <Container>
                 <Icon />
                 <Content>{this.state.response}</Content>
-                <Content>{this.context.strings.content}</Content>
+                <Content>{Koji.config.strings.content}</Content>
                 <Link
                 href="https://reactjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 >
-                    {this.context.strings.linkText}
+                    {Koji.config.strings.linkText}
                 </Link>
             </Container>
         );
     }
 }
-
-HomePage.contextType = GlobalContext;
 
 export default HomePage;

@@ -16,8 +16,7 @@
 import React, { lazy, Suspense } from 'react';
 import createHistory from 'history/createBrowserHistory';
 import { Router as BaseRouter, Switch, Route } from 'react-router-dom';
-
-const { koji } = process.env;
+import Koji from 'koji-tools';
 
 // Router
 const history = createHistory();
@@ -30,7 +29,7 @@ class BrowserRouter extends React.Component {
 // Main router
 export default class Router extends React.Component {
     render() {
-        const routes = koji.pages
+        const routes = Koji.config.pages
             .map(page => {
                 const path = page.path.replace('frontend/', '');
                 return {
