@@ -18,10 +18,9 @@
  */
 
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import Koji from 'koji-tools';
-
+import styled from 'styled-components';
 import Router from './Router';
+import Koji from 'koji-tools';
 
 const Container = styled.div`
     padding: 0;

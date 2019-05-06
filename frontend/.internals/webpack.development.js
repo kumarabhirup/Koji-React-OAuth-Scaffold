@@ -16,6 +16,7 @@
  *   here.
  */
 
+
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -26,7 +27,10 @@ const kojiManifest = require('../../.koji/scripts/buildManifest.js')();
 
 module.exports = {
   watch: true,
-  entry: "./common/index.js",
+  entry: [
+    'react-hot-loader/patch',
+    './common/index.js'
+  ],
   output: {
     path: path.resolve(process.cwd(), 'build'),
     filename: '[name].js',
@@ -36,6 +40,7 @@ module.exports = {
   optimization: {
     minimize: false,
   },
+
   module: {
     rules: [
       {
@@ -46,7 +51,7 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
-        }
+        },
       },
       {
         // Preprocess our own .css files
@@ -148,5 +153,5 @@ module.exports = {
     modules: ['node_modules', 'frontend'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
-  }
+  },
 };

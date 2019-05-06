@@ -14,12 +14,12 @@
  */
 
 import React, { lazy, Suspense } from 'react';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Router as BaseRouter, Switch, Route } from 'react-router-dom';
 import Koji from 'koji-tools';
 
 // Router
-const history = createHistory();
+const history = createBrowserHistory();
 class BrowserRouter extends React.Component {
   render() {
     return <BaseRouter history={history} children={this.props.children} />
