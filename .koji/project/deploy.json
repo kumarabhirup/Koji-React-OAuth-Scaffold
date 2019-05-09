@@ -1,6 +1,6 @@
 {
   "deploy": {
-    "subdomain": "reacttest8.withkoji.com",
+    "subdomain": ".withkoji.com",
     "frontend": {
       "output": "frontend/build",
       "commands": [
