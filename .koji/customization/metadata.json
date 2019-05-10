@@ -1,6 +1,7 @@
 {
   "metadata": {
-    "title": "Koji React Scaffold",
+    "name": "Koji React Scaffold",
+    "short_name": "React App",
     "description": "A React scaffold modified specifically for Koji. Easily customizable at gokoji.com.",
     "image": "https://images.koji-cdn.com/025a4ca3-2c61-4cf2-b821-55b7023c47dc/kojireact.png",
     "icon": "https://objects.koji-cdn.com/025a4ca3-2c61-4cf2-b821-55b7023c47dc/94e432a7-951b-4b41-a726-d5d9fc66c533.ico",
@@ -16,9 +17,14 @@
       "source": "metadata.json",
       "fields": [
         {
-          "key": "title",
+          "key": "name",
           "name": "Name for your App",
           "description": "Will show up as title on Google and Facebook"
+        },
+        {
+            "key": "short_name",
+            "name": "Short Name for your App",
+            "description": "A shorter version of you App name used for PWA's"
         },
         {
           "key": "description",
