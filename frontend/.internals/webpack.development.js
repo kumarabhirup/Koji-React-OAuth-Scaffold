@@ -127,6 +127,7 @@ module.exports = {
     host: '0.0.0.0',
     disableHostCheck: true,
     overlay: true,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.DefinePlugin({
