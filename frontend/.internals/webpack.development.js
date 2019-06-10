@@ -128,6 +128,7 @@ module.exports = {
     disableHostCheck: true,
     historyApiFallback: true,
     overlay: true,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.DefinePlugin({
