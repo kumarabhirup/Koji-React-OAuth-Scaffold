@@ -107,11 +107,9 @@ Object.keys(backendConfig).forEach((routeName) => {
   }
 })
 
-
-app.listen(3333, null, async err => {
-if (err) {
-    console.log(err.message);
-}
-console.log('[koji] backend started');
+app.listen(process.env.PORT, null, async err => {
+    if (err) {
+        console.log(err.message);
+    }
+    console.log('[koji] backend started');
 });
-
