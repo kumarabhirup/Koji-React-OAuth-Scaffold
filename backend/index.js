@@ -107,21 +107,11 @@ Object.keys(backendConfig).forEach((routeName) => {
   }
 })
 
-// Start backend server
-const isInLambda = !!process.env.LAMBDA_TASK_ROOT;
-if (isInLambda) {
-    const serverlessExpress = require('aws-serverless-express');
-    const server = serverlessExpress.createServer(app);
-    exports.default = (event, context) => {
-        console.log('NEW', event);
-        serverlessExpress.proxy(server, event, context);
-    };
-} else {
-    app.listen(3333, null, async err => {
-    if (err) {
-        console.log(err.message);
-    }
-    console.log('[koji] backend started');
-    });
+
+app.listen(3333, null, async err => {
+if (err) {
+    console.log(err.message);
 }
+console.log('[koji] backend started');
+});
 

@@ -33,11 +33,12 @@ const Link = styled.a`
 
 const Icon = styled.div`
     animation: ${AppLogoSpin} infinite 20s linear;
-    height: 40vmin;
-    width: 60vmin;
+    height: 50vmin;
+    width: 50vmin;
     pointer-events: none;
     background-image: url(${() => Koji.config.images.icon});
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     margin-bottom: 16px;
 `;
 
