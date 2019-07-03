@@ -14,7 +14,6 @@ RUN ./.remy/scripts/init.sh https://github.com/madewithkoji/koji-react-scaffold.
 # Run install commands if we have them
 RUN npm install --prefix .remy
 RUN npm install --prefix frontend
-RUN npm install --prefix backend
 
 # Start remy
 CMD npm start --prefix ./.remy
