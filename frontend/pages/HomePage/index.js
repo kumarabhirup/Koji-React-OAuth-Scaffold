@@ -43,17 +43,7 @@ const Icon = styled.div`
 `;
 
 class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            response: '',
-        };
-    }
-
     componentDidMount() {
-        Koji.request(Koji.routes.SampleRoute).then((e) => this.setState({ response: e.response }));
-
         // Force an update of the dom on prop changes
         // This is just for development situations so
         // that we can test prop changes in real-time.
@@ -66,7 +56,6 @@ class HomePage extends React.Component {
         return (
             <Container>
                 <Icon />
-                <Content>{this.state.response}</Content>
                 <Content>{Koji.config.strings.content}</Content>
                 <Link
                 href="https://reactjs.org"
