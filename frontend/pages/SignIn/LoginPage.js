@@ -27,8 +27,6 @@ class LoginPage extends Component {
       fname: response.first_name,
       lname: response.last_name,
       name: response.name,
-      gender: response.gender,
-      birthday: response.birthday,
       email: response.email,
       accessToken: response.accessToken
     });
@@ -45,11 +43,7 @@ class LoginPage extends Component {
       fname: null,
       lname: null,
       name: null,
-      phone: null,
       email: null,
-      gender: null,
-      birthday: null,
-      bio: null,
       accessToken: null
     });
 
@@ -84,11 +78,7 @@ class LoginPage extends Component {
       fname: null,
       lname: null,
       name: null,
-      phone: null,
       email: null,
-      gender: null,
-      birthday: null,
-      bio: null,
       accessToken: null
     })
 
