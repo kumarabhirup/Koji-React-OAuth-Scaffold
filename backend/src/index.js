@@ -14,6 +14,9 @@ require('babel-polyfill');
 const app = require('express')();
 const bodyParser = require('body-parser');
 
+// Routes
+const userRoutes = require('./routes/userRoutes')
+
 // Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,6 +35,7 @@ app.get('/', (req, res) => {
   res.send(`<h1 style="font-family: sans-serif;">WTF are you doin' here?</h1>`, 200)
 })
 
-
+// Routes which should handle requests
+app.use("/users", userRoutes);
 
 app.listen(process.env.PORT || 3001)
