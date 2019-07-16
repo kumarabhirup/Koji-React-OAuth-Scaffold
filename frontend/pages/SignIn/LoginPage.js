@@ -8,10 +8,10 @@ import 'babel-polyfill'; // To make async/await work
 import './main.css';
 import './utils.css';
 
-const FacebookButton = (loading, { onClick }) => (
+const FacebookButton = ({ onClick }) => (
   <a href="#" className="btn-face m-b-20" onClick={onClick}>
     <i className="fa fa-facebook-official"></i>
-    {loading ? 'Signing in...' : 'Facebook'}
+    Facebook
   </a>
 )
 
@@ -127,9 +127,9 @@ class LoginPage extends Component {
               <GoogleLogin
                 clientId={Koji.config.strings.googleClientId}
                 render={renderProps => (
-                  <a href="#" className="btn-google m-b-20" onClick={renderProps.onClick} style={{width: '100%'}}>
+                  <a href="#" className="btn-google m-b-20" onClick={renderProps.onClick}>
                     <img src={Koji.config.images.googleIcon} alt="Google Icon" />
-                    Continue with Google
+                    Google
                   </a>
                 )}
                 // disabled={loading}
@@ -138,6 +138,16 @@ class LoginPage extends Component {
                 fetchBasicProfile={false}
                 onSuccess={response => this.authenticateGoogle(response)}
                 onFailure={this.authenticationFailed}
+              />
+
+               <FacebookAuth
+                appId={Koji.config.strings.fbAppId}
+                autoLoad
+                // disabled={loading}
+                fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
+                callback={response => this.authenticateFacebook(response)}
+                onFailure={this.authenticationFailed}
+                component={renderProps => FacebookButton(renderProps)}
               />
             </form>
           </div>
