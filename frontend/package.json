@@ -1,8 +1,8 @@
 {
-  "name": "meta-project",
+  "name": "koji-react-oauth-scaffold",
   "version": "1.0.0",
-  "description": "A sample project",
-  "author": "username",
+  "description": "React OAuth App template for Koji makers to start with!",
+  "author": "kumar_abhirup",
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./.internals/webpack.production.js --color -p --progress --hide-modules --display-optimization-bailout",
     "postbuild": "koji-tools pwa",
