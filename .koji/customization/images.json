@@ -1,21 +1,19 @@
 {
   "images": {
-    "icon": "https://images.koji-cdn.com/b4804b67-9317-4072-881c-e389c873877b/10b9cd1bc3ad48629def7948a7564ff8.png"
+    "icon": "https://images.koji-cdn.com/b4804b67-9317-4072-881c-e389c873877b/10b9cd1bc3ad48629def7948a7564ff8.png",
+    "googleIcon": "https://i.ibb.co/Ms5B4K2/icon-google.png",
+    "signInPageBackground": "https://i.ibb.co/1bxgbyB/home-banner.jpg"
   },
-  "@@editor": [
-    {
-      "key": "images",
-      "name": "Images",
-      "icon": "🖼️",
-      "source": "images.json",
-      "fields": [
-        {
-          "key": "icon",
-          "name": "Icon",
-          "description": "Icon that spins on the page",
-          "type": "image"
-        }
-      ]
-    }
-  ]
+  "@@editor": [{
+    "key": "images",
+    "name": "Images",
+    "icon": "🖼️",
+    "source": "images.json",
+    "fields": [{
+      "key": "icon",
+      "name": "Icon",
+      "description": "Icon that spins on the page",
+      "type": "image"
+    }]
+  }]
 }

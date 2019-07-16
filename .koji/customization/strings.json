@@ -1,27 +1,28 @@
 {
   "strings": {
+    "projectName": "React-o-Auth",
     "content": "Welcome to React OAuth Scaffold",
-    "linkText": "Sign In"
+    "linkText": "Sign In",
+    "fbApiVersion": "v3.2",
+    "fbAppId": "YOUR_FB_APP_ID_HERE",
+    "googleClientId": "YOUR_GOOGLE_CLIENT_ID_HERE"
   },
-  "@@editor": [
-    {
-      "key": "strings",
-      "name": "Strings",
-      "icon": "📚",
-      "source": "strings.json",
-      "fields": [
-        {
-          "key": "content",
-          "name": "Page Content",
-          "description": "The text that is displayed on the page",
-          "type": "text"
-        },
-        {
-          "key": "linkText",
-          "name": "Link Text",
-          "type": "text"
-        }
-      ]
-    }
-  ]
+  "@@editor": [{
+    "key": "strings",
+    "name": "Strings",
+    "icon": "📚",
+    "source": "strings.json",
+    "fields": [{
+        "key": "content",
+        "name": "Page Content",
+        "description": "The text that is displayed on the page",
+        "type": "text"
+      },
+      {
+        "key": "linkText",
+        "name": "Link Text",
+        "type": "text"
+      }
+    ]
+  }]
 }

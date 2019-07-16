@@ -3,7 +3,7 @@ import FacebookAuth from 'react-facebook-auth';
 import GoogleLogin from 'react-google-login';
 import Koji from 'koji-tools';
 
-import 'babel-polyfill'
+import 'babel-polyfill'; // To make async/await work
 
 import './main.css';
 import './utils.css';
@@ -115,21 +115,20 @@ class LoginPage extends Component {
     return (
       <div className="limiter">
         {/* <div className="container-login100" style={{backgroundImage: "url('/static/auth/images/bg-01.jpg')"}}> */}
-        <div className="container-login100" style={{ backgroundImage: "url('https://i.ibb.co/1bxgbyB/home-banner.jpg')" }}>
+        <div className="container-login100" style={{ backgroundImage: `url('${Koji.config.images.signInPageBackground}')` }}>
           <div className="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
             <form className="login100-form validate-form flex-sb flex-w">
               <span className="login100-form-title p-b-53">
                 Signin to continue 👇
                 <hr />
-                <p>Name welcomes you!</p>
+                <p>{Koji.config.strings.projectName} welcomes you!</p>
               </span>
               
               <GoogleLogin
                 clientId={Koji.config.strings.googleClientId}
                 render={renderProps => (
                   <a href="#" className="btn-google m-b-20" onClick={renderProps.onClick} style={{width: '100%'}}>
-                    <img src="/static/auth/images/icons/icon-google.png" alt="GOOGLE" />
-                    {/* {loading ? 'Signing in...' : 'Continue with Google'} */}
+                    <img src={Koji.config.images.googleIcon} alt="Google Icon" />
                     Continue with Google
                   </a>
                 )}
