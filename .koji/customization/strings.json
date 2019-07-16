@@ -4,8 +4,8 @@
     "content": "Welcome to React OAuth Scaffold",
     "linkText": "Sign In",
     "fbApiVersion": "v3.2",
-    "fbAppId": "2385368505030648",
-    "googleClientId": "177985103333-3427d5pg9vcom07qetogs1dui1plt533.apps.googleusercontent.com"
+    "fbAppId": "1321107468036661",
+    "googleClientId": "907857964547-gh34c97g7k8v6m5hd65id6f4oelt07d1.apps.googleusercontent.com"
   },
   "@@editor": [{
     "key": "strings",
