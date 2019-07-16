@@ -1,5 +1,4 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import Koji from 'koji-tools';
 

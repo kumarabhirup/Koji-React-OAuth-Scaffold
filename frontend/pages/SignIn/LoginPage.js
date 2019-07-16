@@ -8,13 +8,6 @@ import 'babel-polyfill'; // To make async/await work
 import './main.css';
 import './utils.css';
 
-const FacebookButton = ({ onClick }) => (
-  <a href="#" className="btn-face m-b-20" onClick={onClick}>
-    <i className="fa fa-facebook-official"></i>
-    Facebook
-  </a>
-)
-
 class LoginPage extends Component {
 
   constructor(props) {
@@ -114,7 +107,6 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="limiter">
-        {/* <div className="container-login100" style={{backgroundImage: "url('/static/auth/images/bg-01.jpg')"}}> */}
         <div className="container-login100" style={{ backgroundImage: `url('${Koji.config.images.signInPageBackground}')` }}>
           <div className="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
             <form className="login100-form validate-form flex-sb flex-w">
@@ -126,8 +118,8 @@ class LoginPage extends Component {
               
               <GoogleLogin
                 clientId={Koji.config.strings.googleClientId}
-                render={renderProps => (
-                  <a href="#" className="btn-google m-b-20" onClick={renderProps.onClick}>
+                render={({onClick}) => (
+                  <a href="#" className="btn-google m-b-20" onClick={onClick}>
                     <img src={Koji.config.images.googleIcon} alt="Google Icon" />
                     Google
                   </a>
@@ -147,7 +139,12 @@ class LoginPage extends Component {
                 fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
                 callback={response => this.authenticateFacebook(response)}
                 onFailure={this.authenticationFailed}
-                component={renderProps => FacebookButton(renderProps)}
+                component={({onClick}) => (
+                  <a href="#" className="btn-face m-b-20" onClick={onClick}>
+                    <i className="fa fa-facebook-official"></i>
+                    Facebook
+                  </a>
+                )}
               />
             </form>
           </div>
