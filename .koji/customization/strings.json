@@ -1,7 +1,7 @@
 {
   "strings": {
-    "content": "Welcome to your Koji React App",
-    "linkText": "Learn React"
+    "content": "Welcome to React OAuth Scaffold",
+    "linkText": "Sign In"
   },
   "@@editor": [
     {

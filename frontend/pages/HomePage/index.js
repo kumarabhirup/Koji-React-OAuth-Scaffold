@@ -58,9 +58,8 @@ class HomePage extends React.Component {
                 <Icon />
                 <Content>{Koji.config.strings.content}</Content>
                 <Link
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
+                    href="/signin"
+                    rel="noopener noreferrer"
                 >
                     {Koji.config.strings.linkText}
                 </Link>
