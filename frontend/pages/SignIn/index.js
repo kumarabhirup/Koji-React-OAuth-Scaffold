@@ -41,7 +41,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        this.loadFbSDK()
+        this.loadFbSDK();
 
         // Force an update of the dom on prop changes
         // This is just for development situations so
