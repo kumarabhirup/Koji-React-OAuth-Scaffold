@@ -87,5 +87,37 @@ exports.signIn = async (req, res, next) => {
 }
 
 exports.getUser = async (req, res, next) => {
+  const token = req.body.token;
 
+  // Check if token is decodable
+  try {
+    jwt.decode(token, process.env.JWT_SECRET);
+  } catch (err) {
+    return res.status(400).json({
+      error: {
+        message: "Failed to decode the token"
+      }
+    });
+  }
+
+  const decoded = jwt.decode(token, process.env.JWT_SECRET);
+  const userId = decoded && decoded.userId;
+
+  // Find the user in the database
+  const user = await store.read('User', { limit: 1, search: { id: userId } }).then(data => data[0]);
+  if(user) {
+    delete user.accessToken; delete user.socialId; // Do not expose accessToken to the client
+    return res.status(200).json({
+      message: "Token Validated",
+      data: {
+        user
+      }
+    });
+  }
+
+  return res.status(401).json({
+    error: {
+      message: "Invalid token provided"
+    }
+  });
 }
