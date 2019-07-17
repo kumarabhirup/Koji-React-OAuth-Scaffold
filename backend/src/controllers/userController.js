@@ -6,18 +6,27 @@ const isAccessTokenValid = require('../utils/isAccessTokenValid')
 const generateToken = require('../utils/generateToken')
 
 exports.signIn = async (req, res, next) => {
+  // Data Validation // TODO: Validate all other fields such as name and email
+  if (req.body.socialId === undefined) {
+    return res.status(400).json({
+      error: {
+        message: "Inefficient data provided"
+      }
+    });
+  }
+
   // Verify token
   const isValid = await isAccessTokenValid(req.body.signUpMethod, req.body.accessToken);
   if(!isValid) {
     return res.status(401).json({
       error: {
-        message: "Failed to recognize you!"
+        message: "Failed to recognize you"
       }
     });
   }
 
   // Check if user is already signedUp!
-  const signedUser = await store.read('User', { search: { socialId: req.body.socialId }, authentication }).then(data => data[0]);
+  const signedUser = await store.read('User', { search: { socialId: req.body.socialId } }).then(data => data[0]);
   if(!signedUser) {
     // Create new user
     const toAppend = {
