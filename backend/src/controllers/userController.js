@@ -49,7 +49,7 @@ exports.signIn = async (req, res, next) => {
         return await store.read('User', { search: { id: toAppend.id } }).then(data => data[0]);
       });
 
-      const token = jwt.sign({ userId: newUser.id, signUpMethod: newUser.signUpMethod }, process.env.JWT_SECRET);
+      const token = jwt.sign({ userId: newUser.id, signUpMethod: newUser.signUpMethod }, process.env.JWT_SECRET, { expiresIn: "5 days" });
 
       return res.status(200).json({
         message: "SignUp Successful",
