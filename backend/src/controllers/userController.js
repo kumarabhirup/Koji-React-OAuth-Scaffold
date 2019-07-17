@@ -45,7 +45,7 @@ exports.signIn = async (req, res, next) => {
       };
 
       const newUser = await store.append('User', [toAppend]).then(async res => {
-        // res -> { "updatedRange": "Sheet1!A6:D6" } [but we need the newUser and not the updatedRange]
+        // res -> { "updatedRange": "Sheet1!A6:D6" } [but we need to return newUser and not the updatedRange]
         return await store.read('User', { search: { id: toAppend.id } }).then(data => data[0]);
       });
 
