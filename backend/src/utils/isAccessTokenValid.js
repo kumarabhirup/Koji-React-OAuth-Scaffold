@@ -1,3 +1,5 @@
+require('isomorphic-fetch')
+
 async function isTokenValid(method, accessToken) {
 
   // Validate FB token
