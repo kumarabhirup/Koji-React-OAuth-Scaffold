@@ -15,7 +15,7 @@ async function isTokenValid(method, accessToken) {
     .then(res => (res.json()))
     .then(json => {
       if(json.email){
-        if(json.azp === process.env.GOOGLE_LOGIN_APP_ID){
+        if(json.azp === process.env.GOOGLE_CLIENT_ID){
           return true
         } return false
       } return false
