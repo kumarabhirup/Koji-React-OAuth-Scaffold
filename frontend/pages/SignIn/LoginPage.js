@@ -3,6 +3,7 @@ import FacebookAuth from 'react-facebook-auth';
 import GoogleLogin from 'react-google-login';
 import Koji from 'koji-tools';
 
+import User from '../../common/components/User'
 import backendApi from '../../common/utils/data';
 import cookies from '../../common/utils/cookies'
 
@@ -104,52 +105,75 @@ class LoginPage extends Component {
         <div className="container-login100" style={{ backgroundImage: `url('${Koji.config.images.signInPageBackground}')` }}>
           <div className="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
             <form className="login100-form validate-form flex-sb flex-w">
-              <span className="login100-form-title p-b-53">
-                {this.state.loading ? <>Signing you in 🙌</> : <>Sign in to continue 👇</>}
-                <hr />
-                <p>{Koji.config.strings.projectName} welcomes you!</p>
-                { this.state.loading && (
-                  <>
-                  <br />
-                  <img width="70px" src={Koji.config.images.signInLoading} alt="loading" />
-                  </>
-                ) }
-              </span>
-              
-              { !this.state.loading && (
-                <>
-                <GoogleLogin
-                  clientId={Koji.config.strings.googleClientId}
-                  render={({onClick}) => (
-                    <a href="#" className="btn-google m-b-20" onClick={onClick}>
-                      <img src={Koji.config.images.googleIcon} alt="Google Icon" />
-                      Google
-                    </a>
-                  )}
-                  // disabled={loading}
-                  scope={"profile email openid"}
-                  isSignedIn={false}
-                  fetchBasicProfile={false}
-                  onSuccess={response => this.authenticateGoogle(response)}
-                  onFailure={this.authenticationFailed}
-                />
+              <User>
+                {({ user, loading }) => {
+                  if (!loading) {
+                    if (!user)
+                      return (
+                        <>
+                        <span className="login100-form-title p-b-53">
+                          {this.state.loading ? <>Signing you in 🙌</> : <>Sign in to continue 👇</>}
+                          <hr />
+                          <p>{Koji.config.strings.projectName} welcomes you!</p>
+                          { this.state.loading && (
+                            <>
+                            <br />
+                            <img width="70px" src={Koji.config.images.signInLoading} alt="loading" />
+                            </>
+                          ) }
+                        </span>
+                        
+                        { !this.state.loading && (
+                          <>
+                          <GoogleLogin
+                            clientId={Koji.config.strings.googleClientId}
+                            render={({onClick}) => (
+                              <a href="#" className="btn-google m-b-20" onClick={onClick}>
+                                <img src={Koji.config.images.googleIcon} alt="Google Icon" />
+                                Google
+                              </a>
+                            )}
+                            scope={"profile email openid"}
+                            isSignedIn={false}
+                            fetchBasicProfile={false}
+                            onSuccess={response => this.authenticateGoogle(response)}
+                            onFailure={this.authenticationFailed}
+                          />
 
-                <FacebookAuth
-                  appId={Koji.config.strings.fbAppId}
-                  autoLoad
-                  // disabled={loading}
-                  fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
-                  callback={response => this.authenticateFacebook(response)}
-                  onFailure={this.authenticationFailed}
-                  component={({onClick}) => (
-                    <a href="#" className="btn-face m-b-20" onClick={onClick}>
-                      <i className="fa fa-facebook-official"></i>
-                      Facebook
-                    </a>
-                  )}
-                />
-                </>
-              ) }
+                          <FacebookAuth
+                            appId={Koji.config.strings.fbAppId}
+                            autoLoad
+                            fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
+                            callback={response => this.authenticateFacebook(response)}
+                            onFailure={this.authenticationFailed}
+                            component={({onClick}) => (
+                              <a href="#" className="btn-face m-b-20" onClick={onClick}>
+                                <i className="fa fa-facebook-official"></i>
+                                Facebook
+                              </a>
+                            )}
+                          />
+                          </>
+                        ) }
+                        </>
+                      )
+                    else
+                      return (
+                        <span className="login100-form-title p-b-53">
+                          👋 Hey, {user.name}
+                          <hr />
+                          <span style={{fontSize: '18px'}}>You need to be at homepage 😅</span>
+                        </span>
+                      )
+                  } else {
+                    return (
+                      <span className="login100-form-title p-b-53">
+                        Loading...
+                      </span>
+                    )
+                  }
+                }}
+              </User>
             </form>
           </div>
         </div>
