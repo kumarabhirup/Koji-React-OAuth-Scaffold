@@ -12,7 +12,6 @@ import './main.css';
 import './utils.css';
 
 class LoginPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = { loading: false };
@@ -157,7 +156,6 @@ class LoginPage extends Component {
       </div>
     )
   }
-
 }
 
 export default LoginPage

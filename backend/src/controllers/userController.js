@@ -88,7 +88,6 @@ exports.signIn = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   const token = req.body.token;
-
   // Check if token is decodable
   try {
     jwt.decode(token, process.env.JWT_SECRET);

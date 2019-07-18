@@ -1,6 +1,10 @@
+import 'babel-polyfill';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Koji from 'koji-tools';
+
+import User from '../../common/components/User';
+import cookies from '../../common/utils/cookies'
 
 const Container = styled.div`
     background-color: ${() => Koji.config.colors.backgroundColor};
@@ -52,17 +56,56 @@ class HomePage extends React.Component {
         })
     }
 
+    signOut() {
+      cookies.remove('token')
+      window.location.reload()
+    }
+
     render() {
         return (
             <Container>
                 <Icon />
                 <Content>{Koji.config.strings.content}</Content>
-                <Link
-                    href="/signin"
-                    rel="noopener noreferrer"
-                >
-                    {Koji.config.strings.linkText}
-                </Link>
+                <br />
+                <User>
+                  {({user, loading}) => {
+                    if (!loading)
+                      return (
+                        <>
+                        {
+                          (user && user.id)
+                          ? (
+                            <>
+                              <img src={user.profilePicture} alt={`${user.name}'s profile picture`} />
+                              Welcome, { user.name }!
+                              <br />
+                              Email: { user.email }
+                              <Link
+                                onClick={this.signOut}
+                                style={{cursor: 'pointer'}}
+                                rel="noopener noreferrer"
+                              >
+                                Sign Out
+                              </Link>
+                            </>
+                          )
+                          : (
+                            <>
+                            <Link
+                              href="/signin"
+                              rel="noopener noreferrer"
+                            >
+                              {Koji.config.strings.linkText}
+                            </Link>
+                            </>
+                          )
+                        }
+                        </>
+                      )
+                    else
+                      return <>Loading...</>
+                  }}
+                </User>
             </Container>
         );
     }
