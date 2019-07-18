@@ -27,7 +27,7 @@ exports.signIn = async (req, res, next) => {
   }
 
   // Check if user is already signedUp!
-  const signedUser = await store.read('User', { search: { socialId: req.body.socialId } }).then(data => data[0]);
+  const signedUser = await store.read('User', { search: { socialId: req.body.socialId }, authentication }).then(data => data[0]);
   if(!signedUser) {
     try {
       // Create new user
@@ -44,9 +44,9 @@ exports.signIn = async (req, res, next) => {
         username: `${slugify(req.body.name, { lower: true, replacement: '_' })}_${Math.floor(Math.random() * 99) + 1}` // john_doe_65 (random number between 1 to 100 to avoid overriding of usernames)
       };
 
-      const newUser = await store.append('User', [toAppend]).then(async res => {
+      const newUser = await store.append('User', [toAppend], { authentication }).then(async res => {
         // res -> { "updatedRange": "Sheet1!A6:D6" } [but we need to return newUser and not the updatedRange]
-        return await store.read('User', { search: { id: toAppend.id } }).then(data => data[0]);
+        return await store.read('User', { search: { id: toAppend.id }, authentication }).then(data => data[0]);
       });
 
       const token = jwt.sign({ userId: newUser.id, signUpMethod: newUser.signUpMethod }, process.env.JWT_SECRET, { expiresIn: "5 days" });
@@ -73,7 +73,8 @@ exports.signIn = async (req, res, next) => {
     set: { 
       accessToken: req.body.accessToken,
       email: req.body.email // TODO: Handle email match conflicts if email got changed
-    }
+    },
+    authentication
   });
 
   const token = jwt.sign({ userId: signedUser.id, signUpMethod: signedUser.signUpMethod }, process.env.JWT_SECRET);
@@ -88,6 +89,7 @@ exports.signIn = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   const token = req.body.token;
+
   // Check if token is decodable
   try {
     jwt.decode(token, process.env.JWT_SECRET);
@@ -103,7 +105,7 @@ exports.getUser = async (req, res, next) => {
   const userId = decoded && decoded.userId;
 
   // Find the user in the database
-  const user = await store.read('User', { limit: 1, search: { id: userId } }).then(data => data[0]);
+  const user = await store.read('User', { limit: 1, search: { id: userId }, authentication }).then(data => data[0]);
   if(user) {
     delete user.accessToken; delete user.socialId; // Do not expose accessToken to the client
     return res.status(200).json({
