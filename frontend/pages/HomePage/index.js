@@ -73,7 +73,7 @@ class HomePage extends React.Component {
                       return (
                         <>
                         {
-                          (user && user.id)
+                          user
                           ? (
                             <>
                               <img src={user.profilePicture} alt={`${user.name}'s profile picture`} />

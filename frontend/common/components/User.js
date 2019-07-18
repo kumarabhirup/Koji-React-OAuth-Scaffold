@@ -7,7 +7,7 @@ import cookies from '../utils/cookies';
 export default class User extends Component {
   constructor(props) {
     super(props);
-    this.state = {user: {}}
+    this.state = {user: null}
   }
 
   async componentDidMount() {
