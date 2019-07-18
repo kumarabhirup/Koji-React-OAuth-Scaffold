@@ -2,6 +2,8 @@
   "strings": {
     "projectName": "React-o-Auth",
     "content": "Welcome to React OAuth Scaffold",
+    "backendUrl": "http://localhost:3001",
+    "frontendUrl": "http://localhost:8080",
     "linkText": "Sign In",
     "fbApiVersion": "v3.2",
     "fbAppId": "1321107468036661",

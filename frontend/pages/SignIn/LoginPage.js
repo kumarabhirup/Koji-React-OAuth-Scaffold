@@ -3,6 +3,9 @@ import FacebookAuth from 'react-facebook-auth';
 import GoogleLogin from 'react-google-login';
 import Koji from 'koji-tools';
 
+import backendApi from '../../common/utils/data';
+import cookies from '../../common/utils/cookies'
+
 import 'babel-polyfill'; // To make async/await work
 
 import './main.css';
@@ -12,15 +15,20 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loading: false };
     this.authenticateFacebook = this.authenticateFacebook.bind(this);
     this.authenticateGoogle = this.authenticateGoogle.bind(this);
     this.authenticationFailed = this.authenticationFailed.bind(this);
-    this.redirectTo = this.redirectTo.bind(this);
+    this.redirectTo = this.redirectToHome.bind(this);
+  }
+
+  async fetchAndSet(info) {
+    const token = await backendApi.post('/users/signIn', info).then((res) => res.data && res.data.data && res.data.data.token).catch(err => { throw new Error(err) });
+    cookies.set('token', token, { path: '/', expires: new Date(Date.now() + 2592000) }); // 2592000 -> 30 days
   }
 
   async authenticateFacebook(response) {
-    await this.setState({
+    const info = {
       signUpMethod: "facebook",
       profilePicture: response.picture.data.url,
       socialId: response.userID,
@@ -29,11 +37,13 @@ class LoginPage extends Component {
       name: response.name,
       email: response.email,
       accessToken: response.accessToken
-    });
+    }
 
-    // const signIn = await mutation();
+    await this.setState(info);
 
-    // const me = await getMe(client);
+    await this.setState({ loading: true });
+    await this.fetchAndSet(info);
+    await this.setState({ loading: false });
 
     // Empty state
     await this.setState({
@@ -48,14 +58,10 @@ class LoginPage extends Component {
     });
 
     window.location.replace('/');
-
   }
 
   async authenticateGoogle(response) {
-
-    // console.log(response)
-
-    await this.setState({
+    const info = {
       signUpMethod: "google",
       profilePicture: response.profileObj.imageUrl,
       socialId: response.profileObj.googleId,
@@ -64,11 +70,11 @@ class LoginPage extends Component {
       name: response.profileObj.name,
       email: response.profileObj.email,
       accessToken: response.accessToken
-    })
+    }
 
-    // const signIn = await mutation()
-
-    // const me = await getMe(client)
+    await this.setState({ loading: true });
+    await this.fetchAndSet(info);
+    await this.setState({ loading: false });
 
     // Empty state
     await this.setState({
@@ -83,15 +89,14 @@ class LoginPage extends Component {
     })
 
     window.location.replace('/')
-
   }
 
   authenticationFailed(response) {
     return null
   }
 
-  redirectTo() {
-    this.props.router.replace('/')
+  redirectToHome() {
+    window.location.replace('/')
   }
 
   render() {
@@ -101,41 +106,51 @@ class LoginPage extends Component {
           <div className="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
             <form className="login100-form validate-form flex-sb flex-w">
               <span className="login100-form-title p-b-53">
-                Signin to continue 👇
+                {this.state.loading ? <>Signing you in 🙌</> : <>Sign in to continue 👇</>}
                 <hr />
                 <p>{Koji.config.strings.projectName} welcomes you!</p>
+                { this.state.loading && (
+                  <>
+                  <br />
+                  <img width="70px" src={Koji.config.images.signInLoading} alt="loading" />
+                  </>
+                ) }
               </span>
               
-              <GoogleLogin
-                clientId={Koji.config.strings.googleClientId}
-                render={({onClick}) => (
-                  <a href="#" className="btn-google m-b-20" onClick={onClick}>
-                    <img src={Koji.config.images.googleIcon} alt="Google Icon" />
-                    Google
-                  </a>
-                )}
-                // disabled={loading}
-                scope={"profile email openid"}
-                isSignedIn={false}
-                fetchBasicProfile={false}
-                onSuccess={response => this.authenticateGoogle(response)}
-                onFailure={this.authenticationFailed}
-              />
+              { !this.state.loading && (
+                <>
+                <GoogleLogin
+                  clientId={Koji.config.strings.googleClientId}
+                  render={({onClick}) => (
+                    <a href="#" className="btn-google m-b-20" onClick={onClick}>
+                      <img src={Koji.config.images.googleIcon} alt="Google Icon" />
+                      Google
+                    </a>
+                  )}
+                  // disabled={loading}
+                  scope={"profile email openid"}
+                  isSignedIn={false}
+                  fetchBasicProfile={false}
+                  onSuccess={response => this.authenticateGoogle(response)}
+                  onFailure={this.authenticationFailed}
+                />
 
-               <FacebookAuth
-                appId={Koji.config.strings.fbAppId}
-                autoLoad
-                // disabled={loading}
-                fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
-                callback={response => this.authenticateFacebook(response)}
-                onFailure={this.authenticationFailed}
-                component={({onClick}) => (
-                  <a href="#" className="btn-face m-b-20" onClick={onClick}>
-                    <i className="fa fa-facebook-official"></i>
-                    Facebook
-                  </a>
-                )}
-              />
+                <FacebookAuth
+                  appId={Koji.config.strings.fbAppId}
+                  autoLoad
+                  // disabled={loading}
+                  fields={"name,first_name,middle_name,last_name,short_name,picture,email,birthday,location,gender,link"}
+                  callback={response => this.authenticateFacebook(response)}
+                  onFailure={this.authenticationFailed}
+                  component={({onClick}) => (
+                    <a href="#" className="btn-face m-b-20" onClick={onClick}>
+                      <i className="fa fa-facebook-official"></i>
+                      Facebook
+                    </a>
+                  )}
+                />
+                </>
+              ) }
             </form>
           </div>
         </div>
