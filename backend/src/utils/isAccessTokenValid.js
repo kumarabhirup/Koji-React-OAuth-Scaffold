@@ -1,5 +1,10 @@
 require('isomorphic-fetch')
 
+/**
+ * @description isTokenValid - The function checks if the given accessToken is valid for the corresponding service.
+ * @param {String} method - "facebook" or "google"
+ * @param {String} accessToken - The access token you got in the response from the client [Used for validating the user]
+ */
 async function isTokenValid(method, accessToken) {
 
   // Validate FB token

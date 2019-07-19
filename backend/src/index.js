@@ -2,20 +2,20 @@
  * backend/index.js
  * 
  * What it Does:
- *   This file is the entrypoint of backend.
- *   What it essentially does, is connect you to the Stein database.
+ *   This file is the entrypoint of backend. 
+ *   It does all the needed API and server connecting stuffs.
  * 
  * Things to Change:
- *   There's nothing to change here as per now.
+ *   If you want to add new route, you may do that from here.
  */
 
-require('dotenv').config()
+require('dotenv').config();
 require('babel-polyfill');
 const app = require('express')();
 const bodyParser = require('body-parser');
 
 // Routes
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require('./routes/userRoutes');
 
 // Body parser
 app.use(bodyParser.json());
@@ -31,11 +31,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// When you visit http://localhost:3001, you see this 👇
 app.get('/', (req, res) => {
   res.send(`<h1 style="font-family: sans-serif;">WTF are you doin' here?</h1>`, 200)
-})
+});
 
 // Routes which should handle requests
 app.use("/users", userRoutes);
 
-app.listen(process.env.PORT || 3001)
+// LISTEN the designated port or 3001
+app.listen(process.env.PORT || 3001);

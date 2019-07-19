@@ -1,3 +1,14 @@
+/** 
+ * src/controllers/userController.js
+ * 
+ * What it Does:
+ *   This file takes control of the signIn and getUser request to /users API.
+ * 
+ * Things to Change:
+ *   So many things here can be changed. You may add more validation steps, 
+ *   catch the errors that appear when there is no internet and when wrong API keys are used.
+ */
+
 const slugify = require('slugify')
 const jwt = require('jsonwebtoken')
 
