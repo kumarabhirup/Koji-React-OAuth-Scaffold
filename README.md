@@ -17,7 +17,7 @@ Use this scaffold <b>if you want to build a small app in less time</b> that need
 ## Steps to make this scaffold work
 
 1. Sign up on [Stein](https://steinhq.com).
-2. Clone [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1J8dszZEeAuY0eL8XBRrKJ4Z-vPnv4JVerRcsTIbdIq0/edit?usp=sharing) on your account. [Let the sheet name be `User`]
+2. Clone [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1J8dszZEeAuY0eL8XBRrKJ4Z-vPnv4JVerRcsTIbdIq0/edit?usp=sharing) on your account. Let the sheet name be `User`
 3. Go to Stein dashboard, paste your Google Spreadsheet link.
 4. Copy the API Link that Stein provides. Add authentication credentials for a secure database.
 5. `/backend/.sample.env` file is provided. Rename it to `.env`.
