@@ -1,3 +1,8 @@
+/**
+ * @description generateToken - This function is used to generate Ids and tokens.
+ * @param {number} length  - Determine the length of the generated string
+ * @param {object} options - { lower: Boolean } For allowing only lower-case letters in the string
+ */
 function generateToken(length, options = {}){
     var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("")
     if (options.lower) {
