@@ -11,10 +11,29 @@
     "icon": "🖼️",
     "source": "images.json",
     "fields": [{
-      "key": "icon",
-      "name": "Icon",
-      "description": "Icon that spins on the page",
-      "type": "image"
-    }]
+        "key": "icon",
+        "name": "Icon",
+        "description": "Icon that spins on the page",
+        "type": "image"
+      },
+      {
+        "key": "googleIcon",
+        "name": "Google Icon",
+        "description": "Google Logo that appears on SignIn page",
+        "type": "image"
+      },
+      {
+        "key": "signInPageBackground",
+        "name": "SignIn Page Background",
+        "description": "Background cover image that appears on SignIn page",
+        "type": "image"
+      },
+      {
+        "key": "signInLoading",
+        "name": "Loading Spinner",
+        "description": "Loading spinner that appears when OAuth is in process",
+        "type": "image"
+      }
+    ]
   }]
 }

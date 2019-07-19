@@ -15,6 +15,11 @@
     "icon": "📚",
     "source": "strings.json",
     "fields": [{
+        "key": "projectName",
+        "name": "Project Name",
+        "type": "text"
+      },
+      {
         "key": "content",
         "name": "Page Content",
         "description": "The text that is displayed on the page",
@@ -23,6 +28,31 @@
       {
         "key": "linkText",
         "name": "Link Text",
+        "type": "text"
+      },
+      {
+        "key": "backendUrl",
+        "name": "Backend Url",
+        "type": "text"
+      },
+      {
+        "key": "frontendUrl",
+        "name": "Frontend Url",
+        "type": "text"
+      },
+      {
+        "key": "fbApiVersion",
+        "name": "Facebook API version",
+        "type": "text"
+      },
+      {
+        "key": "fbAppId",
+        "name": "Facebook App Id",
+        "type": "text"
+      },
+      {
+        "key": "googleClientId",
+        "name": "Google Client Id",
         "type": "text"
       }
     ]
