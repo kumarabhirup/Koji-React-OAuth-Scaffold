@@ -1,3 +1,14 @@
+/** 
+ * pages/HomePage/index.js
+ * 
+ * What it Does:
+ *   Serves on `/` route.
+ * 
+ * Things to Change:
+ *   If you are creating an app with OAuth using this Koji Scaffold,
+ *   you might want to change everything here because this page is just to show whether the User signed in or not.
+ */
+
 import 'babel-polyfill';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -69,12 +80,14 @@ class HomePage extends React.Component {
                 <br />
                 <User>
                   {({user, loading}) => {
+                    // Render if the User information is loaded
                     if (!loading)
                       return (
                         <>
                         {
                           user
                           ? (
+                            // Show 👇 if user is Signed In
                             <>
                               <img src={user.profilePicture} alt={`${user.name}'s profile picture`} />
                               Welcome, { user.name }!
@@ -90,6 +103,7 @@ class HomePage extends React.Component {
                             </>
                           )
                           : (
+                            // Show 👇 if user is NOT signed in.
                             <>
                             <Link
                               href="/signin"
@@ -102,6 +116,7 @@ class HomePage extends React.Component {
                         }
                         </>
                       )
+                    // Show Loading Screen if the User information is not loaded
                     else
                       return <>Loading...</>
                   }}

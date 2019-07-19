@@ -1,3 +1,14 @@
+/** 
+ * pages/SignIn/LoginPage.js
+ * 
+ * What it Does:
+ *   This component is served on `/signin` route by the SignInPage component.
+ *   All the SignIn frontend app logic stays in this file.
+ * 
+ * Things to Change:
+ *   You may change the token expiration time, or redirect to other route after a successful signin.
+ */
+
 import React, { Component } from 'react';
 import FacebookAuth from 'react-facebook-auth';
 import GoogleLogin from 'react-google-login';
@@ -99,6 +110,11 @@ class LoginPage extends Component {
     window.location.replace('/')
   }
 
+  /**
+   * Difference b/w loading and this.state.loading
+   * - `loading` is the state that is rendered from the User component which determines if the Signed In User Info is already loaded or not.
+   * - `this.state.loading` is handled by this file. It is set to true when user Clicks the OAuth buttons and then set to false when User signs in.
+   */
   render() {
     return (
       <div className="limiter">
@@ -107,7 +123,9 @@ class LoginPage extends Component {
             <form className="login100-form validate-form flex-sb flex-w">
               <User>
                 {({ user, loading }) => {
+                  // Render if the User information is loaded
                   if (!loading) {
+                    // Show 👇 if user was NOT Signed In
                     if (!user)
                       return (
                         <>
@@ -157,6 +175,7 @@ class LoginPage extends Component {
                         ) }
                         </>
                       )
+                    // Show 👇 if user is IS signed in.
                     else
                       return (
                         <span className="login100-form-title p-b-53">
@@ -166,6 +185,7 @@ class LoginPage extends Component {
                         </span>
                       )
                   } else {
+                    // Show 👇 if User information is not yet loaded
                     return (
                       <span className="login100-form-title p-b-53">
                         Loading...

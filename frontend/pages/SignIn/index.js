@@ -1,10 +1,21 @@
+/** 
+ * pages/SignIn/index.js
+ * 
+ * What it Does:
+ *   Serves on `/signin` route.
+ * 
+ * Things to Change:
+ *   You may load a different stylesheet for different styling for the SignIn page.
+ *   Make sure you set fbAppId, fbApiVersion, googleClientId in `.koji/customization/strings.json` for things to work. [Refer README.md]
+ */
+
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Koji from 'koji-tools';
 
 import LoginPage from './LoginPage'
 
-class HomePage extends React.Component {
+class SignInPage extends React.Component {
     loadFbSDK() {
         // Load the Facebook SDK script
         var script = document.createElement('script');
@@ -60,4 +71,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default SignInPage;

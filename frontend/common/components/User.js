@@ -1,3 +1,14 @@
+/** 
+ * common/components/User.js
+ * 
+ * What it Does:
+ *   Exports the User component that supplies data related to the user signed in
+ *   With the help of render props method in React.
+ * 
+ * Things to Change:
+ *   Not much to change here, unless you add a new feature to the app.
+ */
+
 import 'babel-polyfill';
 import React, { Component } from 'react';
 
@@ -7,7 +18,7 @@ import cookies from '../utils/cookies';
 export default class User extends Component {
   constructor(props) {
     super(props);
-    this.state = {user: null}
+    this.state = {user: null};
   }
 
   async componentDidMount() {
