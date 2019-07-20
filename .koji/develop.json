@@ -10,6 +10,11 @@
         "build-error": "[webpack] Frontend build error"
       },
       "startCommand": "npm start"
+    },
+    "backend": {
+      "path": "backend",
+      "port": 3001,
+      "startCommand": "npm start"
     }
   }
 }
