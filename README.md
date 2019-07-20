@@ -24,24 +24,29 @@ Use this scaffold <b>if you want to build a small app in less time</b> that need
 6. Make `STEIN_STORE` env variable equal to the API Link provided by Stein.
 7. If you added Stein Authentication, make sure you fill in the `STEIN_STORE_USERNAME` and `STEIN_STORE_PASSWORD`.
 
-**So now, you have successfully connected to the database!** Now it is the time to set up Facebook and Google Developer App.
+**So now, you have successfully connected to the database!** Now it is the time to **set up Facebook** and Google Developer App.
 
 8. Visit [https://developers.facebook.com](https://developers.facebook.com) and create a new App. Name it anything.
 9. Copy the FB App Id and FB App Secret. [Learn more](https://developers.facebook.com/docs)
 10. Change the `fbAppId` string in the Koji VCC to the FB App Id. Also keep the FB App Id equal to the `FB_APP_ID` env variable.
-11. Keep the FB App Secret equal to the `FB_APP_SECRET` env variable.
+11. Go to Facebook Login > Settings and change `Valid OAuth Redirect URIs` to `http://localhost:8080` and `http://localhost:3001`.
+12. Keep the FB App Secret equal to the `FB_APP_SECRET` env variable.
 
-Now that you have setup Facebook OAuth, time to setup the Google OAuth!
+**Now that you have setup Facebook OAuth, time to setup the Google OAuth!**
 
-12. Go to [https://console.developers.google.com](https://console.developers.google.com) and create a new app, name it anything.
-13. Click Credentials tab from the Sidebar. > Click `Create Credentials` > `OAuth client ID`. Also fill in the consent screen information.
-14. Copy the Google Client Id and Google Client Secret.
-15. Change the `googleClientId` string in the Koji VCC to the Google Client Id. Also keep the Google Client Id equal to the `GOOGLE_CLIENT_ID` env variable.
-16. Keep the Google Client Secret equal to the `GOOGLE_ACCESS_KEY` env variable.
+13. Go to [https://console.developers.google.com](https://console.developers.google.com) and create a new app, name it anything.
+14. Click Credentials tab from the Sidebar. > Click `Create Credentials` > `OAuth client ID`. Also fill in the consent screen information.
+15. Copy the Google Client Id and Google Client Secret.
+16. Set the `Authorised JavaScript origins` to `http://localhost:8080` and `http://localhost:3001`.
+17. Change the `googleClientId` string in the Koji VCC to the Google Client Id. Also keep the Google Client Id equal to the `GOOGLE_CLIENT_ID` env variable.
+18. Keep the Google Client Secret equal to the `GOOGLE_ACCESS_KEY` env variable.
 
 I understand that was quite a lengthy process. But, now it's all set up!
 
 ## Any Questions?
 
-Join our [Koji Discord Server](https://discord.gg/eQuMJF6) for any software questions or bugs regarding this template.   
+Join our [Koji Discord Server](https://discord.gg/eQuMJF6) for any software questions or bugs regarding this template.
+<br />
 Any ideas/issues can be DM'ed to [the template creator](https://twitter.com/kumar_abhirup).
+<br />
+Shoot your Pull Request and Bug reports on the official [GitHub repository](https://github.com/KumarAbhirup/Koji-React-OAuth-Scaffold).
