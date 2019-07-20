@@ -3,7 +3,7 @@ Welcome to your new Koji React OAuth Project! 🎉
 <br />
 Use this scaffold <b>if you want to build a small app in less time</b> that needs user to sign in with the help of Google and Facebook.
 
-> **NOTE:** This scaffold needs a lot of API KEYS to start and get things working properly. So, please read the documentation carefully.
+> **NOTE:** This scaffold needs a lot of API KEYS to start and get things working properly. So, please read the documentation carefully. Without API keys, **the application will throw runtime errors in the console.**
 
 ## Run Frontend
 ```
