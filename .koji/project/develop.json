@@ -9,7 +9,12 @@
         "built": "Compiled successfully.",
         "build-error": "[webpack] Frontend build error"
       },
-      "startCommand": "npm start"
-    }
+      "startCommand": "npm i && npm start"
+    },
+    "backend": {
+      "path": "backend",
+      "port": 3001,
+      "startCommand": "npm i && npm start"
+    },
   }
 }
