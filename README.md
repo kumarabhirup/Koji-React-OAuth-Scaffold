@@ -5,6 +5,21 @@ Use this scaffold <b>if you want to build a small app in less time</b> that need
 
 > **NOTE:** This scaffold needs a lot of API KEYS to start and get things working properly. So, please read the documentation carefully.
 
+## Run Frontend
+```
+$ cd frontend
+$ npm i
+$ npm start
+```
+
+## Run Backend
+```
+$ cd backend
+$ npm i
+$ npm start # for production
+$ npm run dev # for development
+```
+
 ## Where to go
 1. Your Frontend code is located at `/frontend/pages` and there is an example page at [HomePage](#~/frontend/pages/HomePage/index.js)
 2. Your Backend API code is located at `/backend/src/routes` and the entrypoint for the backend is `/backend/src/index.js`.
@@ -29,7 +44,7 @@ Use this scaffold <b>if you want to build a small app in less time</b> that need
 8. Visit [https://developers.facebook.com](https://developers.facebook.com) and create a new App. Name it anything.
 9. Copy the FB App Id and FB App Secret. [Learn more](https://developers.facebook.com/docs)
 10. Change the `fbAppId` string in the Koji VCC to the FB App Id. Also keep the FB App Id equal to the `FB_APP_ID` env variable.
-11. Go to Facebook Login > Settings and change `Valid OAuth Redirect URIs` to `http://localhost:8080` and `http://localhost:3001`.
+11. Go to Facebook Login > Settings and change `Valid OAuth Redirect URIs` to `http://localhost:8080`, `http://localhost:3001` and `https://frontend-<REMIXED_PROJECT_ID>.withkoji.com`.
 12. Keep the FB App Secret equal to the `FB_APP_SECRET` env variable.
 
 **Now that you have setup Facebook OAuth, time to setup the Google OAuth!**
@@ -37,7 +52,7 @@ Use this scaffold <b>if you want to build a small app in less time</b> that need
 13. Go to [https://console.developers.google.com](https://console.developers.google.com) and create a new app, name it anything.
 14. Click Credentials tab from the Sidebar. > Click `Create Credentials` > `OAuth client ID`. Also fill in the consent screen information.
 15. Copy the Google Client Id and Google Client Secret.
-16. Set the `Authorised JavaScript origins` to `http://localhost:8080` and `http://localhost:3001`.
+16. Set the `Authorised JavaScript origins` to `http://localhost:8080`, `http://localhost:3001` and `https://frontend-<REMIXED_PROJECT_ID>.withkoji.com`.
 17. Change the `googleClientId` string in the Koji VCC to the Google Client Id. Also keep the Google Client Id equal to the `GOOGLE_CLIENT_ID` env variable.
 18. Keep the Google Client Secret equal to the `GOOGLE_ACCESS_KEY` env variable.
 
