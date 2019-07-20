@@ -15,6 +15,6 @@
       "path": "backend",
       "port": 3001,
       "startCommand": "npm i && npm start"
-    },
+    }
   }
 }
